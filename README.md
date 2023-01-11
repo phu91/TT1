@@ -4,7 +4,7 @@
 
 Authors: Tang, Phu; Khatua, Prabir; Carnevale, Vincenzo; Loverde, Sharon
 
-#Topology
+# Topology
 
 System CPT-Only: cpt_24.prmtop
 
