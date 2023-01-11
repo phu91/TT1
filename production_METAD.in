@@ -1,0 +1,25 @@
+Production simulations
+ &cntrl
+  imin  = 0,            ! No minimization
+  irest    = 1,         ! Restart from the last rst file
+  ntx      = 5,         ! Read coordinates and velocities from unformatted rst7 coordinate file
+  ntp      = 1,         ! Isotropic pressure 
+  cut      = 10.0,      ! Non-bonded cutoff
+  ntr      = 0,         ! Restraint
+  ntc      = 2,         ! SHAKE on
+  ntf      = 2,         ! SHAKE on
+  tempi    = 300.0,
+  temp0    = 300.0,
+  ntt      = 3,         ! Langevin dynamics
+  gamma_ln = 1.0,       ! Collision frequency gamma
+  ig       =-1,
+  iwrap    = 1,         ! Wrap
+  ioutfm   = 1,
+  nstlim   = 10000000,
+  dt       = 0.002,     ! timestep in ps
+  ntpr = 100,           ! Print every ntpr steps
+  ntwx = 1000,          ! Write the coordinates every ntwx steps
+  ntwr = 1000,          ! Write the RESTART coordinates every ntwr steps
+  plumed=1,
+  plumedfile='plumed.dat'
+ /
