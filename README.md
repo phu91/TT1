@@ -21,3 +21,6 @@ STEP 1: Calculating Stacking Index
 STEP 2: Combining data from PLUMED outputs and calculated stacking index from STEP 1
 
 STEP 3: Calculating and visualizing the free energy profiles
+
+# Miscellaneous 
+`find-frame.py` will extract frames with chosen parameters (sl, si, ac, or k2).
