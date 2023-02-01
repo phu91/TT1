@@ -34,18 +34,25 @@ def find_peak(data,sl_min,sl_max,rc,rc_min,rc_max):
     return frames
 
 ### I/O ###
-df1 = pd.read_csv("parameter1.dat",header=0,delim_whitespace=True)
-df2 = pd.read_csv("parameter2.dat",header=0,delim_whitespace=True)
-df = pd.concat([df1,df2],axis=1)
+
+### INPUT EXAMPLES ###
+
+# These steps can be skipped if all parameters are concatnated. 
+# df1 = pd.read_csv("si-example.dat",header=0,delim_whitespace=True)
+# df2 = pd.read_csv("si-ac-k2-example.dat",header=0,delim_whitespace=True)
+# df = pd.concat([df1,df2],axis=1)
+
+df = pd.read_csv("system-A-combined.dat",header=0,delim_whitespace=True)
 
 #This choose S_L (PARAM1) as the reference range, and then select feature (SI, AC, K2) or PARAM2 with its min-max range 
 # Need to be rewitten to select correct parameters 
-# peak = str(input("Peak name: "))
-# min_sl = float(input("min S_L: "))
-# max_sl = float(input("max S_L: "))
-# feature = str(input("Choose si,ac,k2: "))
-# param_min = float(input("min value: "))
-# param_max = float(input("max value: "))
+
+peak = str(input("Peak name: "))
+min_sl = float(input("min S_L: "))
+max_sl = float(input("max S_L: "))
+feature = str(input("Choose si,ac,k2: "))
+param_min = float(input("min value: "))
+param_max = float(input("max value: "))
 
 frames = find_peak(df,min_sl,max_sl,feature,param_min,param_max)
 nf = +len(frames)
