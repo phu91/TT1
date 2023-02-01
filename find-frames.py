@@ -34,28 +34,29 @@ def find_peak(data,sl_min,sl_max,rc,rc_min,rc_max):
     return frames
 
 ### I/O ###
-df1 = pd.read_csv("/home/phu/Desktop/self-assemble/12-mols/cubicBox/1-CMD/pi-pi/2-stacking-count-new/test0-si.dat",header=0,delim_whitespace=True)
-df2 = pd.read_csv("/home/phu/Desktop/self-assemble/12-mols/cubicBox/1-CMD/pi-pi/test0-sl-k2-ac.dat",header=0,delim_whitespace=True)
+df1 = pd.read_csv("parameter1.dat",header=0,delim_whitespace=True)
+df2 = pd.read_csv("parameter2.dat",header=0,delim_whitespace=True)
 df = pd.concat([df1,df2],axis=1)
 
-peak = str(input("Peak name: "))
-min_sl = float(input("min S_L: "))
-max_sl = float(input("max S_L: "))
-feature = str(input("Choose si,ac,k2: "))
-param_min = float(input("min value: "))
-param_max = float(input("max value: "))
+#This choose S_L (PARAM1) as the reference range, and then select feature (SI, AC, K2) or PARAM2 with its min-max range 
+# Need to be rewitten to select correct parameters 
+# peak = str(input("Peak name: "))
+# min_sl = float(input("min S_L: "))
+# max_sl = float(input("max S_L: "))
+# feature = str(input("Choose si,ac,k2: "))
+# param_min = float(input("min value: "))
+# param_max = float(input("max value: "))
 
 frames = find_peak(df,min_sl,max_sl,feature,param_min,param_max)
 nf = +len(frames)
 
 print("There are %s to write." % nf)
  
-u = md.Universe('/home/phu/Desktop/self-assemble/12-mols/cubicBox/1-CMD/dry.tt1_12mol_cubic.prmtop'
-               ,'/home/phu/Desktop/self-assemble/12-mols/cubicBox/1-CMD/12-mol-tt1-CMD.dcd')
-tt1 = u.select_atoms('all')
-with md.Writer("/home/phu/Desktop/self-assemble/12-mols/cubicBox/1-CMD/pi-pi/peaks/"+peak+".dcd",tt1.n_atoms) as W:
+u = md.Universe('PRMTOP','DCD')
+selected_Atoms = u.select_atoms('all')
+with md.Writer("OUTPUT.DCD",selected_Atoms.n_atoms) as W:
     for ts in u.trajectory[::1]:
         current = ts.frame
         for i in frames:
             if current == i:
-                W.write(tt1)
+                W.write(selected_Atoms)
